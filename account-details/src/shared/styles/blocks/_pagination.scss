@@ -1,0 +1,57 @@
+@use '../helpers' as *;
+
+.pagination {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+
+    &__arrow-button {
+        @include reset-button;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 8px;
+        cursor: pointer;
+        border: 1px solid var(--color-dark);
+        border-radius: 10px;
+    }
+
+    &__button {
+        @include reset-button;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 8px;
+        color: #333;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 10px;
+
+        @include hover{
+            &:hover:not(:disabled) {
+                background-color: var(--color-light-gray);
+            }
+        }
+
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        &--active {
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            border-color: var(--color-dark);
+        }
+
+        &--prev,
+        &--next {
+            font-weight: bold;
+        }
+    }
+    &__ellipsis {
+        margin: 0 5px;
+        color: var(--color-dark-gray);
+    } 
+}

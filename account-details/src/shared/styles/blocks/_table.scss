@@ -1,0 +1,134 @@
+@use '../helpers' as *;
+
+.transactions-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    &__th, &__td {
+        padding: 10px 20px;
+        text-align: left;
+        color: var(--color-dark-gray);
+        @include fluid-text(16, 13);
+    }
+
+    &__th {
+        font-weight: 400;
+        background-color: var(--color-baby-blue);
+
+        &:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            width: 25%;
+            @include mobile{
+                width: 20%;
+            }
+        }
+        
+        &:nth-child(2) {
+            width: 60%;
+            @include mobile{
+                width: 50%;
+            }
+        }
+
+        &:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            width: 15%;
+            text-align: left;
+            @include mobile{
+                width: 30%;
+            }
+        }
+    }
+
+    &__date {
+        @include fluid-text(16, 14);
+        padding: 15px 20px;
+        font-weight: 700;
+        color: var(--color-dark-gray);
+    }
+
+    &__tr {
+        &:hover {
+            background-color: var(--color-baby-blue);
+        }
+    }
+
+    &__td {
+        font-weight: 400;
+
+        &:last-child {
+            text-align: left;
+        }
+
+        &--negative {
+            color: var(--color-red) !important;
+            font-weight: 500;
+        }
+
+        &--positive {
+            color: var(--color-green) !important;
+            font-weight: 500;
+        }
+    }
+
+    &__wrapper {
+        table {
+            width: 100%;
+            background-color: var(--color-light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            table-layout: fixed;
+
+            td:first-child {
+                width: 25%;
+                @include mobile{
+                    width: 20%;
+                }
+            }
+            
+            td:nth-child(2) {
+                width: 60%;
+                @include mobile{
+                    width: 50%;
+                }
+            }
+
+            td:last-child {
+                width: 15%;
+                @include mobile{
+                    width: 30%;
+                }
+            }
+        }
+
+    }
+
+    &__sort-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 400;
+        color: var(--color-dark-gray);
+        @include fluid-text(16, 13);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        width: 100%;
+        text-align: left;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+            color: var(--color-dark);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+} 

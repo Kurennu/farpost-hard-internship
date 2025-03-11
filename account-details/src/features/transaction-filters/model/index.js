@@ -1,7 +1,7 @@
 export const DEFAULT_FILTERS = {
     dateFrom: '',
     dateTo: '',
-    transactionType: 'all',
+    transactionTypes: [],
     sumFrom: '',
     sumTo: ''
 };
@@ -18,8 +18,8 @@ export const filterTransactions = (transactions, filters) => {
             matches = matches && (transactionDate >= fromDate && transactionDate <= toDate);
         }
 
-        if (filters.transactionType && filters.transactionType !== 'all') {
-            matches = matches && transaction.transactionType === filters.transactionType;
+        if (filters.transactionTypes && filters.transactionTypes.length > 0) {
+            matches = matches && filters.transactionTypes.includes(transaction.transactionType);
         }
         
 

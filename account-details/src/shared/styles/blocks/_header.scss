@@ -1,0 +1,8 @@
+@use '../helpers' as *;
+
+.header {
+  h1 {
+    @include fluid-text(36, 24);
+    color: var(--color-dark);
+  }
+} 
