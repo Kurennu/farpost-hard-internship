@@ -10,7 +10,7 @@
         padding: 10px 20px;
         text-align: left;
         color: var(--color-dark-gray);
-        @include fluid-text(16, 13);
+        @include fluid-text(16, 12);
     }
 
     &__th {

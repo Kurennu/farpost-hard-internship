@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: account-details-app
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    volumes:
+      - ./public/transactions.json:/usr/share/nginx/html/transactions.json

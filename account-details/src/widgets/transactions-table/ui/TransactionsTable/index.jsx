@@ -1,37 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
     groupTransactionsByDate, 
     formatDateTime, 
     formatSum,
-    sortTransactionsByTime,
-    sortTransactionsBySum
+    createSortManager
 } from '../../model';
-import '../../../../shared/styles/blocks/_table.scss';
 
 const TransactionsTable = ({ transactions }) => {
-    const [sortConfig, setSortConfig] = useState({
-        key: null,
-        direction: 'asc'
-    });
+    const sortManager = useMemo(() => createSortManager(), []);
+    const [sortConfig, setSortConfig] = useState(sortManager.initialConfig);
 
     const handleSort = (key) => {
-        let direction = 'asc';
-        if (sortConfig.key === key && sortConfig.direction === 'asc') {
-            direction = 'desc';
-        }
-        setSortConfig({ key, direction });
+        const newConfig = sortManager.updateSortConfig(sortConfig, key);
+        setSortConfig(newConfig);
     };
 
-
-    let groupedTransactions = groupTransactionsByDate(transactions);
-    
-
-    if (sortConfig.key === 'time') {
-        groupedTransactions = sortTransactionsByTime(groupedTransactions, sortConfig.direction);
-    } else if (sortConfig.key === 'sum') {
-        groupedTransactions = sortTransactionsBySum(groupedTransactions, sortConfig.direction);
-    }
-    
+    const groupedTransactions = useMemo(() => {
+        const grouped = groupTransactionsByDate(transactions);
+        return sortManager.applySorting(grouped, sortConfig);
+    }, [transactions, sortConfig, sortManager]);
 
     const dates = Object.keys(groupedTransactions);
 

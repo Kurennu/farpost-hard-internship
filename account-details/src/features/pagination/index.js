@@ -1,13 +1,6 @@
-import Pagination from './ui/Pagination';
-import { 
+export { default as Pagination } from './ui/Pagination';
+export { 
   calculateTotalPages, 
   getItemsForPage, 
   DEFAULT_PAGE_SIZE 
 } from './model';
-
-export {
-  Pagination,
-  calculateTotalPages,
-  getItemsForPage,
-  DEFAULT_PAGE_SIZE
-};

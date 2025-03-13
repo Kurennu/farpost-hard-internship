@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import { TransactionsTable } from '../widgets/transactions-table';
-import { Filters, filterTransactions } from '../features/transaction-filters';
+import { Filters, filterTransactions, DEFAULT_FILTERS } from '../features/transaction-filters';
 import { fetchTransactions, getTransactionTypes } from '../entities/transaction';
 import { 
   Pagination, 
@@ -12,7 +12,7 @@ import {
 
 const AccountDetailsPage = () => {
     const [transactions, setTransactions] = useState([]);
-    const [filteredTransactions, setFilteredTransactions] = useState([]);
+    const [filters, setFilters] = useState(DEFAULT_FILTERS);
     const [transactionTypes, setTransactionTypes] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,31 +20,35 @@ const AccountDetailsPage = () => {
         const loadTransactions = async () => {
             const data = await fetchTransactions();
             setTransactions(data);
-            setFilteredTransactions(data);
             setTransactionTypes(getTransactionTypes(data));
         };
 
         loadTransactions();
     }, []);
 
+    const filteredTransactions = useMemo(() => {
+        return filterTransactions(transactions, filters);
+    }, [transactions, filters]);
 
-    const handleFilterChange = (filters) => {
-        const filtered = filterTransactions(transactions, filters);
-        setFilteredTransactions(filtered);
+    const handleFilterChange = (newFilters) => {
+        setFilters(newFilters);
         setCurrentPage(1); 
     };
 
+    const paginatedTransactions = useMemo(() => {
+        return getItemsForPage(
+            filteredTransactions, 
+            currentPage, 
+            DEFAULT_PAGE_SIZE
+        );
+    }, [filteredTransactions, currentPage]);
 
-    const paginatedTransactions = getItemsForPage(
-        filteredTransactions, 
-        currentPage, 
-        DEFAULT_PAGE_SIZE
-    );
-
-    const totalPages = calculateTotalPages(
-        filteredTransactions.length, 
-        DEFAULT_PAGE_SIZE
-    );
+    const totalPages = useMemo(() => {
+        return calculateTotalPages(
+            filteredTransactions.length, 
+            DEFAULT_PAGE_SIZE
+        );
+    }, [filteredTransactions.length]);
 
     return (
         <main>

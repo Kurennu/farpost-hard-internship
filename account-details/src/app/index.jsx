@@ -1,5 +1,5 @@
 import React from 'react';
-import AccountDetailsPage from '../pages/AccountDetailsPage';
+import { AccountDetailsPage } from '../pages';
 
 export const App = () => {
   return (

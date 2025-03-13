@@ -59,4 +59,37 @@ export const formatSum = (sum) => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     }).format(sum);
+};
+
+export const createSortManager = (initialKey = null, initialDirection = 'asc') => {
+    const initialConfig = {
+        key: initialKey,
+        direction: initialDirection
+    };
+    
+    const updateSortConfig = (currentConfig, key) => {
+        let direction = 'asc';
+        if (currentConfig.key === key && currentConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        return { key, direction };
+    };
+    
+    const applySorting = (groupedTransactions, sortConfig) => {
+        if (!sortConfig.key) return groupedTransactions;
+        
+        if (sortConfig.key === 'time') {
+            return sortTransactionsByTime(groupedTransactions, sortConfig.direction);
+        } else if (sortConfig.key === 'sum') {
+            return sortTransactionsBySum(groupedTransactions, sortConfig.direction);
+        }
+        
+        return groupedTransactions;
+    };
+    
+    return {
+        initialConfig,
+        updateSortConfig,
+        applySorting
+    };
 }; 

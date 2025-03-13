@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const TRANSACTION_TYPE_LABELS = {
     'autoUp': 'Поднятия',
     'viewing': 'Просмотры',
@@ -9,14 +8,9 @@ export const TRANSACTION_TYPE_LABELS = {
     'commission': 'Комиссии'
 };
 
-const fetchTransactions = () => 
+export const fetchTransactions = () => 
     axios.get('/transactions.json')
         .then(response => response.data);
 
-const getTransactionTypes = transactions => 
-    [...new Set(transactions.map(({ transactionType }) => transactionType))]; 
-
-export {
-    fetchTransactions,
-    getTransactionTypes
-};
+export const getTransactionTypes = transactions => 
+    [...new Set(transactions.map(({ transactionType }) => transactionType))];

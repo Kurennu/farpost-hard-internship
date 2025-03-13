@@ -63,12 +63,10 @@
             display: flex;
             border: 1px solid #d7d7d7;
             border-radius: 10px;
-            overflow: hidden;
         }
 
         &-field {
-            position: relative;
-            
+            position: relative;            
             &:not(:last-child)::after {
                 content: '';
                 position: absolute;
@@ -83,7 +81,7 @@
                 width: 180px;
                 height: 45px;
                 border: none;
-                border-radius: 0;
+                border-radius: 10px;
                 -moz-appearance: textfield;
                 padding: 0 15px;
                 transition: background-color 0.2s ease;
@@ -121,7 +119,7 @@
                     }
                 }
                 @include mobile{
-                    width: 170px;
+                    width: 155px;
                 }
             }
         }
