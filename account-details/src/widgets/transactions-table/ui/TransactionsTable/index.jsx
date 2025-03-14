@@ -6,6 +6,10 @@ import {
     createSortManager
 } from '../../model';
 
+/**
+ * Компонент таблицы транзакций
+*/
+
 const TransactionsTable = ({ transactions }) => {
     const sortManager = useMemo(() => createSortManager(), []);
     const [sortConfig, setSortConfig] = useState(sortManager.initialConfig);

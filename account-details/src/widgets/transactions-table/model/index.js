@@ -1,3 +1,9 @@
+
+/**
+ * Логика для группировки транзакций по дате + сортировка транзакций 
+ * по времени и сумме
+ */
+
 export const groupTransactionsByDate = (transactions) => {
     return transactions.reduce((groups, transaction) => {
         const date = new Date(transaction.date).toLocaleDateString('ru-RU', {

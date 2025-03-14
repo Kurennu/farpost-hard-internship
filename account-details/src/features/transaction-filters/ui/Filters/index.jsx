@@ -12,6 +12,10 @@ import {
 } from '../../model';
 import { TRANSACTION_TYPE_LABELS } from '../../../../entities/transaction';
 
+/**
+ * Компонент фильтров
+ */
+
 const datePickerProps = {
     dateFormat: "dd.MM.yyyy",
     locale: ru,

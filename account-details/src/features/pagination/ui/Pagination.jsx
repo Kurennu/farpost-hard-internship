@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * Компонент пагинации.
+ * Отображает элементы навигации по страницам с логикой отображения
+ * номеров страниц и многоточия для больших диапозонов  
+*/
+
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null;
 
@@ -22,23 +28,24 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       key={page}
       className={`pagination__button ${page === currentPage ? 'pagination__button--active' : ''}`}
       onClick={() => onPageChange(page)}
+      aria-label={`Страница ${page}`}
+      aria-current={page === currentPage ? 'page' : undefined}
     >
       {page}
     </button>
   );
 
   return (
-    <div className="pagination">
+    <div className="pagination" role="navigation" aria-label="Пагинация">
       <button 
         className="pagination__arrow-button"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        aria-label="Предыдущая страница"
       >
         <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 1L1.70711 6.29289C1.31658 6.68342 1.31658 7.31658 1.70711 7.70711L7 13" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M7 1L1.70711 6.29289C1.31658 6.68342 1.31658 7.31658 1.70711 7.70711L7 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-
-      
       </button>
 
       {uniquePageNumbers.map((page, index) => 
@@ -51,9 +58,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         className="pagination__arrow-button"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        aria-label="Следующая страница"
       >
         <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L6.29289 6.29289C6.68342 6.68342 6.68342 7.31658 6.29289 7.70711L1 13" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M1 1L6.29289 6.29289C6.68342 6.68342 6.68342 7.31658 6.29289 7.70711L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
     </div>

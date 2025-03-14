@@ -7,6 +7,11 @@
     justify-content: flex-end;
     gap: 5px;
 
+    @include mobile {
+        justify-content: center;
+        padding: 15px 0;
+    }
+
     &__arrow-button {
         @include reset-button;
         min-width: 36px;
@@ -15,6 +20,21 @@
         cursor: pointer;
         border: 1px solid var(--color-dark);
         border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @include hover {
+            &:hover:not(:disabled) {
+                background-color: var(--color-dark);
+                color: var(--color-light);
+            }
+        }
     }
 
     &__button {
@@ -32,7 +52,6 @@
                 background-color: var(--color-light-gray);
             }
         }
-
 
         &:disabled {
             opacity: 0.5;

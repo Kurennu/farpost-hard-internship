@@ -1,5 +1,10 @@
 import { format, startOfDay, endOfDay, isValid } from 'date-fns';
 
+/**
+ * Логика для фильтрации транзакций
+ * Реализовала фильтр по дате, типу и сумме
+ */
+
 export const DEFAULT_FILTERS = {
     dateFrom: '',
     dateTo: '',

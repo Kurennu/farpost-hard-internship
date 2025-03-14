@@ -1,0 +1,53 @@
+@use '../helpers' as *;
+
+.expense-chart {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+
+    &__title {
+        @include fluid-text(20, 16);
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 10px;
+        color: var(--color-dark-gray);
+    }
+
+    &__total {
+        margin-bottom: 20px;
+        text-align: center;
+        @include fluid-text(16, 12);
+        color: var(--color-dark-gray);
+        
+        strong {
+            font-weight: 600;
+            color: var(--color-green);
+        }
+    }
+
+    &__container {
+        height: 300px;
+        
+        @include mobile {
+            height: 350px; 
+        }
+    }
+
+    &__button {
+        margin-bottom: 20px;
+        background-color: var(--color-green);
+        @include fluid-text(16, 14);
+        color: var(--color-light);;
+        font-weight: 500;
+        @include hover {
+            &:hover{
+                background-color: var(--color-dark-green);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        &:active {
+            background-color: var(--color-dark-green);
+        }
+    }
+} 

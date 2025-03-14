@@ -1,3 +1,9 @@
+/**
+ * Логика для пагинации.
+ * Содержит функции для разбиения данных на страницы
+ * и расчета общего количества страниц
+ */
+
 export const getItemsForPage = (items, currentPage, pageSize) => {
   const startIndex = (currentPage - 1) * pageSize;
   return items.slice(startIndex, startIndex + pageSize);
