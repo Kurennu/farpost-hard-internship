@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-
 import { TransactionsTable } from '../widgets/transactions-table';
 import { Filters, filterTransactions, DEFAULT_FILTERS } from '../features/transaction-filters';
 import { fetchTransactions, getTransactionTypes } from '../entities/transaction';
